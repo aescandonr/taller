@@ -1,0 +1,72 @@
+#esto es un comentario
+"""comentarios
+en varias
+lineas"""
+
+
+def calcular_edad(an):
+    e=2023-an
+    return e
+
+
+def mayor_de_edad(e):
+    m = False
+    if e>18:
+        m = "es mayor de edad"
+    else:
+        m="es menor de edad"
+    return m
+
+
+def generar_correo(n,a):
+    n=n.strip()
+    a=a.strip()
+    correo=reemplazar_caracteres(n[0].lower())
+    x=a.split()
+    correo+=x[0].lower()
+    correo+=reemplazar_caracteres(x[1][0].lower())
+    correo+="@unemi.edu.ec"
+    return correo
+
+
+def reemplazar_caracteres(l):
+    r=l
+    if l=="ñ":
+        r="n"
+    elif l=="á":
+        r="a"
+    elif l=="é":
+        r="e"
+    elif l=="í":
+        r="i"
+    elif l=="ó":
+        r="o"
+    elif l=="ú":
+        r="u"
+    return r
+
+
+import random
+import string
+
+
+def generar_contrasena():
+    longitud = 15
+    caracteres = string.ascii_letters + string.digits
+    contrasena = ''.join(random.choice(caracteres) for i in range(longitud))
+    return contrasena
+
+
+def run():
+    nombre=input("ingrese su nombre: ")
+    apellido=input("ingrese su apellido: ")
+    anio_nacimiento=int(input("ingrese su año de nacimiento: "))
+    edad=calcular_edad(anio_nacimiento)
+    tipo_de_edad=mayor_de_edad(edad)
+    correo=generar_correo(nombre,apellido)
+
+    print(f"la edad de {nombre} {apellido} es {edad},y es {tipo_de_edad}")
+    print(f"su correo generado es {correo}")
+    print(f"su contraseña es: ", generar_contrasena())
+if __name__ == '__main__':
+    run()
